@@ -163,6 +163,7 @@ def division():
         print(f"After dividing\n {div_nums}\n your answer is {div_result}")
 
 def calculator():
+    print()
     while True:
         use = input("Would you like to use the calculator? y or n ")
         if use == 'y':
@@ -188,3 +189,13 @@ def calculator():
 
 
 calculator()
+
+# The Temperature Converter
+
+'''
+Create a program that converts temperatures between fahrenheit and Celsius
+
+Task 1: Code a funciton that converts celsius to fahrenheit 
+Task 2: Code a function that converts fahrenheit to celsius
+task 3: Implement a user interface that asks the user which conversion they want to perform and calls the appropriate function
+'''
