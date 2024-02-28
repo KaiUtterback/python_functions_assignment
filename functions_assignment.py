@@ -11,20 +11,21 @@ Task 3: Add error handling to ensure that the user inputs a string for the name 
 
 # make a function that asks for the user's name and greets them
 # use if statements to make responses to user input
-# use try / except statement to test user input and respond with an 'error' message if they enter a wrong answer or data type.
+# for the name block respond with an 'error' message if they enter a wrong answer or data type.
 
 def greeting():
-    greet = input("Hello, my name is Kai, what is your name? ")
-    print(f"Hello {greet}! Nice to meet you!")
+    print()
     while True:
-        feeling = input("How are you feeling today?\n (common responses are happy, sad, confused, tired, upset) ")
+        greet = input("Hello, my name is Kai, what is your name? ")
 
-        try:
-            feeling == str(feeling)
-        except:
-            print("I'm sorry, that's not an answer that I'm familiar with, can you try again?\n note, all inputs are case sensitive")
+        if greet.isalpha():
+            print(f"Hello {greet}! Nice to meet you!")
+        else:
+            print("I'm sorry please enter a valid name.\n Use letters only")
             continue
 
+        feeling = input("How are you feeling today?\n (common responses are happy, sad, confused, tired, upset) ")
+        
         if feeling == 'happy':
             print("I'm glad you're feeling happy! I hope that your day continues to go well!")
             break
@@ -42,5 +43,6 @@ def greeting():
             break
         else:
             print("I'm not really used to that feeling, but I'm here for you if you need someone to talk to.")
+            break
 
 greeting()
