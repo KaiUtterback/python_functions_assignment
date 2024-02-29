@@ -188,7 +188,7 @@ def calculator():
             break
 
 
-calculator()
+# calculator()
 
 # The Temperature Converter
 
@@ -199,3 +199,37 @@ Task 1: Code a funciton that converts celsius to fahrenheit
 Task 2: Code a function that converts fahrenheit to celsius
 task 3: Implement a user interface that asks the user which conversion they want to perform and calls the appropriate function
 '''
+
+def cel_fah():
+    print()
+    celsius = input("Enter the temperature in Celsius: ")
+    celsius = int(celsius)
+    result_F = celsius * 1.8 + 32
+    result_F = round(result_F, 2)
+    print(f"{celsius} degrees celsius is equal to {result_F} degrees fahrenheit")
+
+# cel_fah()
+    
+def fah_cel():
+    print()
+    fahrenheit = input("Enter the temperature in Fahrenheit: ")
+    fahrenheit = int(fahrenheit)
+    result_C = (fahrenheit - 32) * 0.556
+    result_C = round(result_C, 2)
+    print(f"{fahrenheit} degrees fahrenheit is equal to {result_C} degrees celsius")
+
+def temperature_converter():
+    while True:
+        print()
+        f_or_c = input("Welcome to Kai's Temperature converter!\n Would you like to convert Fahrenheit to Celsius or Celsius to Fahrenheit?\n Type Celsius for C-F or Fahrenheit for F-C. type x to exit: ")
+        if f_or_c == 'celsius' or f_or_c == 'Celsius':
+            cel_fah()
+            continue
+        elif f_or_c == 'fahrenheit' or f_or_c == 'Fahrenheit':
+            fah_cel()
+            continue
+        else:
+            print("Have a great day!")
+            break
+
+temperature_converter()
