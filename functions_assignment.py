@@ -270,4 +270,58 @@ def shopping_list():
             print(f"This is your shopping list:\n {shop_list}")
             break
 
-shopping_list()
+# shopping_list()
+        
+# Grade Analyzer
+        
+'''
+Task 1: Code a function to calculate the average grade
+Task 2: Implement a function to find the highest and lowest grade
+Task 3: Create a feature that categorizes grades into letter grades (A, B, C, etc)
+'''
+
+def assign_letter_grade(grade):
+    if grade <= 69:
+        return 'F'
+    elif grade <= 79:
+        return 'C'
+    elif grade <= 89:
+        return 'B'
+    elif grade <= 99:
+        return 'A'
+    else:
+        return 'A+'
+
+def grades():
+    import math
+    import statistics
+
+    grade_list = []
+    letter_grades = []
+
+    while True:
+        print()
+        add_grade = input("Enter grade percent out of 100 here or x to exit: ")
+        if add_grade == 'x':
+            break
+        else:
+            add_grade = float(add_grade)
+            grade_list.append(add_grade)
+            letter_grades.append(assign_letter_grade(add_grade))
+
+
+    av_grade = statistics.mean(grade_list)
+    av_grade = round(av_grade, 2)
+    max_grade = max(grade_list)
+    min_grade = min(grade_list)
+
+    av_letter_grade = assign_letter_grade(av_grade)
+    max_letter_grade = assign_letter_grade(max_grade)
+    min_letter_grade = assign_letter_grade(min_grade)
+
+    print(f"Grades in your list are\n {grade_list}\n {letter_grades}")
+    print(f"The average grade is {av_grade}, {av_letter_grade}")
+    print(f"The highest grade is {max_grade}, {max_letter_grade}")
+    print(f"The smallest grade is {min_grade}, {min_letter_grade}")
+
+grades()    
