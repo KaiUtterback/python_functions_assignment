@@ -15,8 +15,9 @@ Task 3: Add error handling to ensure that the user inputs a string for the name 
 
 def greeting():
     print()
+    print("Welcome to Kai's greeting Program:")
     while True:
-        greet = input("Hello, my name is Kai, what is your name? ")
+        greet = input("My name is Kai, what is your name? ")
 
         if greet.isalpha():
             print(f"Hello {greet}! Nice to meet you!")
@@ -357,7 +358,7 @@ def quiz_user(questions, answers):
             score += 1
         else:
             print(f"Wrong! The correct answer is {answers[i]}.")
-        print()  # Add a newline for readability
+        print()  
     return score
 
 def score_quiz(answers, user_answers):
@@ -371,12 +372,15 @@ def score_quiz(answers, user_answers):
     else:
         print("You can do better! Keep practicing.")
 
-user_answers = []
-for question in questions:
-    user_answer = input(question + " ")
-    user_answers.append(user_answer)
+def quiz():
+    print()
+    user_answers = []
+    for question in questions:
+        user_answer = input(question + " ")
+        user_answers.append(user_answer)
+    score_quiz(answers, user_answers)
 
-score_quiz(answers, user_answers)
+# quiz()
 
     
 # Daily Planner
@@ -668,7 +672,7 @@ def run_assignment():
     print(f"Thanks {grader}!")
     while True:
         print("-" * 50)
-        print("Choose a Program to run:")
+        print("Program Library:")
         print("1: The welcoming program")
         print("2: The Calculator App")
         print("3: The Temperature Converter")
@@ -676,3 +680,38 @@ def run_assignment():
         print("5: The Grade Analyzer")
         print("6: The Daily Planner")
         print("7: The Quiz Game")
+        print("8: The Journey Planner")
+        print("9: The personal Library Organizer")
+        print("10: The Fitness Tracker")
+        print("X: Exit")
+
+        choice = input("Choose a program to run: ")
+        if choice == '1':
+            greeting()
+        if choice == '2': 
+            calculator()
+        if choice == '3': 
+            temperature_converter()
+        if choice == '4':
+            shopping_list()
+        if choice == '5':
+            grades()  
+        if choice == '6':
+            run_planner()
+        if choice == '7':
+            quiz()
+        if choice == '8':
+            journey_planner()
+        if choice == '9': 
+            library_organizer()
+        if choice == '10':
+            log = user_input_for_activities()
+            generate_summary_report(log)
+        if choice == 'x':
+            print(f"Thanks for taking the time to run through my assignment {grader}!")
+            print("Have a great day!")
+            break
+        else:
+            print("That's not a correct input, please try again")
+
+run_assignment()
