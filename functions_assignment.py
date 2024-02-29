@@ -326,6 +326,59 @@ def grades():
 
 # grades()    
     
+# The Quiz Game
+import random
+
+
+questions = [
+    "What is the capital of France?",
+    "Who wrote 'Romeo and Juliet'?",
+    "What is the chemical symbol for water?",
+    "What is the largest planet in our solar system?",
+    "What year did the Titanic sink?",
+]
+
+answers = [
+    "Paris",
+    "William Shakespeare",
+    "H2O",
+    "Jupiter",
+    "1912",
+]
+
+def quiz_user(questions, answers):
+    score = 0
+    total_questions = len(questions)
+    for i in range(total_questions):
+        print(f"Question {i+1}: {questions[i]}")
+        user_answer = input("Your answer: ")
+        if user_answer.lower() == answers[i].lower():
+            print("Correct!")
+            score += 1
+        else:
+            print(f"Wrong! The correct answer is {answers[i]}.")
+        print()  # Add a newline for readability
+    return score
+
+def score_quiz(answers, user_answers):
+    total_questions = len(answers)
+    score = sum(user_answer.lower() == correct_answer.lower() for user_answer, correct_answer in zip(user_answers, answers))
+    print(f"You scored {score} out of {total_questions}.")
+    if score == total_questions:
+        print("Congratulations! You got all the answers correct!")
+    elif score >= total_questions // 2:
+        print("Not bad! You got more than half of the answers correct.")
+    else:
+        print("You can do better! Keep practicing.")
+
+user_answers = []
+for question in questions:
+    user_answer = input(question + " ")
+    user_answers.append(user_answer)
+
+score_quiz(answers, user_answers)
+
+    
 # Daily Planner
     
 '''
@@ -603,6 +656,23 @@ def user_input_for_activities():
     return log
 
 
-log = user_input_for_activities()
-generate_summary_report(log)
+# log = user_input_for_activities()
+# generate_summary_report(log)
 
+# Final Program to call all the others 
+
+def run_assignment():
+    print()
+    print("Welcome to my assignment!")
+    grader = input("Please enter your name to continue: ")
+    print(f"Thanks {grader}!")
+    while True:
+        print("-" * 50)
+        print("Choose a Program to run:")
+        print("1: The welcoming program")
+        print("2: The Calculator App")
+        print("3: The Temperature Converter")
+        print("4: The Shopping List Maker")
+        print("5: The Grade Analyzer")
+        print("6: The Daily Planner")
+        print("7: The Quiz Game")
