@@ -324,4 +324,235 @@ def grades():
     print(f"The highest grade is {max_grade}, {max_letter_grade}")
     print(f"The smallest grade is {min_grade}, {min_letter_grade}")
 
-grades()    
+# grades()    
+    
+# Daily Planner
+    
+'''
+Create a simple daily planner that can add, remove, and display tasks.
+
+Task 1: Write a function to add a task with a time slot
+task 2: Code a function to remove a task
+Task 3: Implement a display function that shows all tasks in order of time
+'''
+
+def add_task(tasks, time, task):
+    tasks[time] = task
+
+def remove_task(tasks, time):
+    if time in tasks:
+        del tasks[time]
+        print("Task removed successfully.")
+    else:
+        print("Task not found at the given time.")
+
+def display_tasks(tasks):
+    if not tasks:
+        print("No tasks scheduled for today.")
+    else:
+        print("Tasks for today:")
+        for time, task in sorted(tasks.items()):
+            print(f"{time}: {task}")
+
+def run_planner():
+    print()
+    tasks = {}
+
+    while True:
+        print("\nKai's Daily Planner Menu:")
+        print("1. Add a task")
+        print("2. Remove a task")
+        print("3. Display tasks")
+        print("4. Exit")
+
+        choice = input("Enter your choice (by number): ")
+
+        if choice == '1':
+            time = input("Enter time for the task (e.g., 9:00 AM): ")
+            task = input("Enter task: ")
+            add_task(tasks, time, task)
+            print("Task added successfully.")
+        elif choice == '2':
+            time = input("Enter time for the task to remove: ")
+            remove_task(tasks, time)
+        elif choice == '3':
+            display_tasks(tasks)
+        elif choice == '4':
+            print("Exiting Daily Planner.")
+            break
+        else:
+            print("Invalid choice. Please enter a valid option.")
+
+
+
+# run_planner()
+
+# The journey Planner
+    
+'''
+Create a program that plans a journey, calclulating travel times and stops.
+
+Task 1: Code a function that calculates travel time based on distance and speed.
+Task 2: Create a feature that suggests stops based on the length of the journey
+Task 3: Implement user input for starting point, destination, and preffered travel speed.
+'''
+
+def get_user_input():
+    import random
+    print()
+
+    start_point = input("Enter starting point: ")
+    destination = input("Enter Destination: ")
+    speed = float(input("Enter preffered travel speed (mph): "))
+    distance = random.randint(10, 1000) # Just going to assume a random distance for this case
+    return start_point, destination, speed, distance 
+
+def calculate_travel_time(distance, speed):
+    time_hours = distance / speed
+    time_hours = round(time_hours)
+    return time_hours
+
+def suggest_stops(distance):
+    if distance <= 50:
+        return ["Scenic viewpoint at Mile 25"]
+    elif distance <= 200:
+        return ["Rest stop at Mile 50", "Point of interest at Mile 100"]
+    elif distance <= 400:
+        return ["Rest stop at Mile 100", "Point of interest at Mile 200", "Scenic overlook at Mile 300"]
+    elif distance <= 600:
+        return ["Rest stop at Mile 150", "Point of interest at Mile 300", "Scenic overlook at Mile 450"]
+    elif distance <= 800:
+        return ["Rest stop at Mile 200", "Point of interest at Mile 400", "Scenic overlook at Mile 600", "Historical site at Mile 700"]
+    else:
+        return ["Rest stop at Mile 250", "Point of interest at Mile 500", "Scenic overlook at Mile 750", "Historical site at Mile 900", "Nature trail at Mile 950", "Picnic area at Mile 975"]
+
+
+def journey_planner():
+    print()
+    print("Welcome to Kai's Journey Planner!")
+    
+    while True:
+        start_point, destination, speed, distance = get_user_input()
+        
+        travel_time = calculate_travel_time(distance, speed)
+        print(f"Estimated travel time from {start_point} to {destination}: {travel_time:.2f} hours")
+        
+        stops = suggest_stops(distance)
+        if stops:
+            print("Suggested stops:")
+            for stop in stops:
+                print("- " + stop)
+        else:
+            print("No suggested stops for this journey.")
+        
+        choice = input("Do you want to plan another journey? (yes/no): ")
+        if choice != 'yes':
+            print("Exiting Journey Planner.")
+            break
+
+# journey_planner()
+        
+# Personal Library organizer
+        
+'''
+Create a system that organizes a personal library of books
+
+Task 1: Write a function to add books with title, author, and genre
+Task 2: Code a search function to find books by title or author
+Task 3: Implement a way to display books sorted by genre or author
+'''
+
+def add_book(title, author, genre, library):
+    book = {'title': title, 'author': author, 'genre': genre}
+    library.append(book)
+    print("Book added to your library.")
+
+def search_book(query, library):
+    search_results = []
+    for book in library:
+        if query in book['title'] or query in book['author'] or query in book['genre']:
+            search_results.append(book)
+    return search_results
+
+def display_books(books, sort_key):
+    sorted_books = sorted(books, key=lambda x: x[sort_key])
+    for book in sorted_books:
+        print(f"Title: {book['title']}, Author: {book['author']}, Genre: {book['genre']}")
+
+def remove_book(title, library):
+    removed = False
+    for book in library:
+        if book['title'] == title:
+            library.remove(book)
+            print(f"Book '{title}' removed successfully.")
+            removed = True
+            break
+    
+    if not removed:
+        print(f"Book '{title}' not found in the library.")
+
+def library_organizer():
+    library = [   # Just wanted to pre populate some of my favorite books in to the library
+        {'title': 'Harry Potter and the Sorcerer\'s Stone', 'author': 'J.K. Rowling', 'genre': 'Fantasy'},
+        {'title': 'To Kill a Mockingbird', 'author': 'Harper Lee', 'genre': 'Classic'},
+        {'title': 'The Great Gatsby', 'author': 'F. Scott Fitzgerald', 'genre': 'Classic'},
+        {'title': 'The Catcher in the Rye', 'author': 'J.D. Salinger', 'genre': 'Literary Fiction'},
+        {'title': 'The Hobbit', 'author': 'J.R.R. Tolkien', 'genre': 'Fantasy'},
+        {'title': '1984', 'author': 'George Orwell', 'genre': 'Dystopian'},
+        {'title': 'Pride and Prejudice', 'author': 'Jane Austen', 'genre': 'Romance'},
+        {'title': 'The Hunger Games', 'author': 'Suzanne Collins', 'genre': 'Young Adult'},
+        {'title': 'The Da Vinci Code', 'author': 'Dan Brown', 'genre': 'Mystery'},
+        {'title': 'The Alchemist', 'author': 'Paulo Coelho', 'genre': 'Adventure'}
+    ]
+    
+    while True:
+        print("\nLibrary Organizer Menu:")
+        print("1. Add a book")
+        print("2. Remove a book")
+        print("3. Search for a book")
+        print("4. Display all books sorted by genre")
+        print("5. Display all books sorted by author")
+        print("6. Exit")
+        
+        choice = input("Enter your choice: ")
+        
+        if choice == '1':
+            title = input("Enter the title of the book: ")
+            author = input("Enter the author of the book: ")
+            genre = input("Enter the genre of the book: ")
+            add_book(title, author, genre, library)
+        elif choice == '2':
+            title = input("Enter the title of the book to remove: ")
+            remove_book(title, library)
+        elif choice == '3':
+            query = input("Enter the title or author to search: ")
+            results = search_book(query, library)
+            if results:
+                print("Search results:")
+                for book in results:
+                    print(f"Title: {book['title']}, Author: {book['author']}, Genre: {book['genre']}")
+            else:
+                print("No matching books found.")
+        elif choice == '4':
+            print("\nBooks sorted by genre:")
+            display_books(library, 'genre')
+        elif choice == '5':
+            print("\nBooks sorted by author:")
+            display_books(library, 'author')
+        elif choice == '6':
+            print("Exiting Library Organizer.")
+            break
+        else:
+            print("Invalid choice. Please enter a valid option.")
+# library_organizer()
+            
+# The Fitness Tracker
+
+'''
+Create a program that tracks fitness activities and calories burned.
+
+Task 1: Develop a funciton to log different fitness activities and their duration
+Task 2: Write a funciton that estimates calories burned based on teh activity and duration
+Task 3: Create a summary function that provides a report of all activities and total calories burned for the day.
+'''
+
