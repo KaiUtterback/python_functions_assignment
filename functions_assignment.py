@@ -232,4 +232,42 @@ def temperature_converter():
             print("Have a great day!")
             break
 
-temperature_converter()
+# temperature_converter()
+        
+# The Shopping List Maker
+        
+'''
+Create a program that helps the user make a shopping list.
+
+Task 1: Write a function that lets the user add items to a list.
+Task 2: Include a feature to remove items from the list.
+Task 3: Add a function that prints out the entire list in a formatted way
+'''
+
+def shopping_list():
+    shop_list = []
+    while True:
+        print()
+        add_list = input("Type the items you need to add to your shopping list or 'done' to exit: ")
+        if add_list == 'done':
+            break
+        else:
+            shop_list.append(add_list)
+            continue
+    print(shop_list)
+    while True:
+        rem_list = input("Would you like to remove items from your list? type r to remove or x to exit and see your list: ")
+        if rem_list == 'r':
+            item_removed = input("Choose an item to remove: ")
+            if item_removed in shop_list:
+                shop_list.remove(item_removed)
+                print(f"This is your updated shopping list\n {shop_list}")
+                continue
+            else:
+                print("Sorry that item isn't in your list")
+                continue
+        else:
+            print(f"This is your shopping list:\n {shop_list}")
+            break
+
+shopping_list()
