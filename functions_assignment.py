@@ -514,7 +514,7 @@ def library_organizer():
         print("5. Display all books sorted by author")
         print("6. Exit")
         
-        choice = input("Enter your choice: ")
+        choice = input("Enter your choice (number): ")
         
         if choice == '1':
             title = input("Enter the title of the book: ")
@@ -555,4 +555,54 @@ Task 1: Develop a funciton to log different fitness activities and their duratio
 Task 2: Write a funciton that estimates calories burned based on teh activity and duration
 Task 3: Create a summary function that provides a report of all activities and total calories burned for the day.
 '''
+
+import random
+
+def log_activity(activity, duration, log):
+    log.append({'activity': activity, 'duration': duration})
+
+def estimate_calories(activity, duration):
+    return random.randint(100, 200)
+
+
+def generate_summary_report(log):
+    total_calories = 0
+    max_activity_length = max(len(entry['activity']) for entry in log)
+    max_activity_length += 15  
+    
+    print("Summary Report:")
+    print(f"Activity{' '*(max_activity_length - 8)}Duration (min)\tCalories Burned")
+    print("-" * (40 + max_activity_length))
+    
+    for entry in log:
+        activity = entry['activity']
+        duration = entry['duration']
+        calories_burned = estimate_calories(activity, duration)
+        total_calories += calories_burned
+        print(f"{activity:<{max_activity_length}}\t{duration}\t\t{calories_burned}")
+        
+    print("-" * (40 + max_activity_length))
+    print(f"Total Calories Burned: {total_calories}")
+
+def user_input_for_activities():
+    log = []
+    print()
+    print("Welcome to Kai's Fitness Tracker!")
+    while True:
+        print()
+        activity = input("Enter the activity (or 'done' to finish): ")
+        if activity.lower() == 'done':
+            break
+        duration_str = input("Enter the duration (in minutes): ")
+        try:
+            duration = int(duration_str)
+        except ValueError:
+            print("Invalid input. Duration must be a valid integer.")
+            continue
+        log_activity(activity, duration, log)
+    return log
+
+
+log = user_input_for_activities()
+generate_summary_report(log)
 
